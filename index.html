@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berke'ye Geri Sayım 💕</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,.35) 0 2px, transparent 3px),
+      radial-gradient(circle at 80% 30%, rgba(255,255,255,.25) 0 2px, transparent 3px),
+      linear-gradient(135deg, #ff9ab8, #c9a7ff 48%, #8fd3ff);
+    background-size: 180px 180px, 230px 230px, 100% 100%;
+    color: #fff;
+  }
+
+  .glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.12);
+    filter: blur(20px);
+    animation: float 7s ease-in-out infinite;
+  }
+
+  .card {
+    position: relative;
+    width: min(90%, 760px);
+    padding: 45px 35px 40px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 32px;
+    background: rgba(255,255,255,.16);
+    box-shadow: 0 25px 70px rgba(80, 30, 100, .25);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .mini { font-size: 18px; letter-spacing: 3px; opacity: .9; }
+  h1 {
+    margin: 10px 0 8px;
+    font-size: clamp(32px, 7vw, 62px);
+    text-shadow: 0 4px 20px rgba(90,40,100,.25);
+  }
+
+  .date {
+    font-size: 18px;
+    opacity: .9;
+    margin-bottom: 30px;
+  }
+
+  #days {
+    font-size: clamp(80px, 18vw, 160px);
+    font-weight: 800;
+    line-height: .9;
+    margin: 10px 0;
+    text-shadow: 0 8px 30px rgba(80,30,100,.25);
+  }
+
+  .label {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  .hearts {
+    font-size: 30px;
+    letter-spacing: 10px;
+    animation: pulse 2s infinite;
+  }
+
+  .symbols span {
+    position: fixed;
+    font-size: 25px;
+    opacity: .65;
+    animation: drift linear infinite;
+    pointer-events: none;
+  }
+
+  .symbols span:nth-child(1) { left: 8%; animation-duration: 9s; }
+  .symbols span:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: -4s; }
+  .symbols span:nth-child(3) { left: 35%; animation-duration: 10s; animation-delay: -7s; }
+  .symbols span:nth-child(4) { left: 55%; animation-duration: 13s; animation-delay: -2s; }
+  .symbols span:nth-child(5) { left: 72%; animation-duration: 11s; animation-delay: -6s; }
+  .symbols span:nth-child(6) { left: 88%; animation-duration: 14s; animation-delay: -9s; }
+
+  @keyframes drift {
+    from { transform: translateY(110vh) rotate(0deg); }
+    to { transform: translateY(-15vh) rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    50% { transform: scale(1.08); }
+  }
+
+  @keyframes float {
+    50% { transform: translate(40px, -30px) scale(1.08); }
+  }
+
+  .footer {
+    margin-top: 22px;
+    font-size: 14px;
+    opacity: .7;
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<div class="symbols" aria-hidden="true">
+  <span>♡</span><span>♥</span><span>✦</span>
+  <span>♡</span><span>✧</span><span>♥</span>
+</div>
+
+<main class="card">
+  <div class="mini">BERKE ŞAHİN'E 💌</div>
+  <h1>Geri Sayım Başladı!</h1>
+  <div class="date">17 Ekim 2026 ✨</div>
+
+  <div id="days">12</div>
+  <div class="label">gün kaldı 💕</div>
+
+  <div class="hearts">♡ ♥ ♡ ♥ ♡</div>
+  <div class="footer">Her geçen gün biraz daha yaklaşıyor... ✨</div>
+</main>
+
+<script>
+  const target = new Date("2026-10-17T00:00:00+02:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById("days").textContent = "0";
+      document.querySelector(".label").textContent = "Berke geldi! ❤️";
+      return;
+    }
+
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("days").textContent = days;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
